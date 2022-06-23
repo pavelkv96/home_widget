@@ -24,6 +24,8 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+**.freezed.dart
+**.config.dart
 .dart_tool/
 pubspec.lock
 .flutter-plugins
