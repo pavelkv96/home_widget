@@ -1,6 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_widget/di/injection.dart';
+
+Future<void> main() async {
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await configureDI();
+      BlocOverrides.runZoned(
+        () => runApp(const MyApp()),
+      );
+    },
+    (error, stack) {
+      if (kDebugMode) print(error);
+    },
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
